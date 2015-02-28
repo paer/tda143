@@ -1,0 +1,8 @@
+package v1;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class OutPutPanel extends JPanel{
+
+}

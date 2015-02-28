@@ -1,0 +1,54 @@
+package v1;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
+import javax.swing.Timer;
+
+public class PlayEngine {
+	OutPutPanel outPanel;
+	InPutPanel inPanel;
+	int score;
+	Timer gameTimer;
+	Timer frogTimer;
+
+	public PlayEngine(int row, int col, InPutPanel inPanel, OutPutPanel outPanel) {
+		this.outPanel = outPanel;// TODO Auto-generated constructor stub
+		gameTimer = new Timer(60000, gameOverAction());
+		frogTimer = new Timer(1000, frogTimerAction());
+		gameTimer.start();
+	}
+
+	private ActionListener frogTimerAction() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		};
+	}
+
+	private int randomInt() {
+		Random rn = new Random();
+		return (int) rn.nextInt(5);
+	}
+
+	private ActionListener gameOverAction() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		};
+	}
+
+	public void increaseScore() {
+		score++;
+		System.out.print(score);
+		outPanel.setLabel2(score);
+		// TODO Auto-generated method stub
+
+	}
+
+}

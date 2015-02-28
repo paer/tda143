@@ -1,0 +1,63 @@
+package v1;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.Timer;
+
+@SuppressWarnings("serial")
+public class FrogButton extends JButton {
+
+	Timer timer = new Timer(1000, timerAction());
+
+	Color color = Color.green;
+
+	public FrogButton() {
+
+		drawTimedFrog();
+
+	}
+
+	public void drawAliveFrog() {
+		color = Color.red;
+		repaint();
+	}
+
+	public void drawDeadFrog() {
+		color = Color.black;
+		repaint();
+	}
+
+	public void drawEmptyFrog() {
+		color = Color.green;
+		repaint();
+	}
+
+	public void drawTimedFrog() {
+		timer.start();
+		drawAliveFrog();
+	}
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		this.setBackground(Color.green);
+		g.setColor(color);
+		g.fillOval(0, 0, getWidth(), getHeight());
+	}
+
+	public ActionListener timerAction() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				drawDeadFrog();
+				timer.stop();
+				System.out.println("Timer Stopped");
+			}
+
+		};
+
+	}
+}

@@ -1,0 +1,19 @@
+package timerTest;
+
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class TimerTest extends JFrame {
+	public TimerTest() {
+		setLayout(new GridLayout());
+		setSize(300, 300);
+	}
+
+	public static void main(String[] args) {
+		TimerTest t = new TimerTest();
+
+	}
+
+}

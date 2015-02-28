@@ -1,0 +1,52 @@
+package v1;
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class InPutPanel extends JPanel {
+	FrogButton[][] frogButtons;
+
+	public InPutPanel(int row, int col) {
+		this.setLayout(new GridLayout(row, col));
+		frogButtons = new FrogButton[row][col];
+
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				frogButtons[i][j] = new FrogButton();
+				frogButtons[i][j].addActionListener(hitFrogAction());
+				this.add(frogButtons[i][j]);
+			}
+		}
+
+		showAliveFrog(1, 1, 10000);
+		System.out.print(frogButtons[1][1].isAlive());
+	}
+
+	private ActionListener hitFrogAction() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FrogButton source = (FrogButton) e.getSource();
+				if (source.isAlive())
+					source.drawDeadFrog(1000);;
+			}
+		};
+	}
+
+	public void showAliveFrog(int row, int col, int time) {
+		frogButtons[row][col].drawAliveFrog(time);
+	}
+
+	public void showDeadFrog(int row, int col, int time) {
+		frogButtons[row][col].drawDeadFrog(time);
+	}
+
+	public void setEngine(PlayEngine theEngine) {
+		// TODO Auto-generated method stub
+
+	}
+}

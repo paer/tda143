@@ -1,0 +1,85 @@
+package gameOfLife;
+
+import java.util.Random;
+
+public class LifeModel {
+	private int width, height, nrOfGeneration;
+	private boolean[][] world;
+
+	public LifeModel(int width, int height) {
+		this.width = width;
+		this.height = height;
+		this.world = new boolean[width][height];
+	}// konstruktor
+
+	public int getWidth() {
+		return width;
+	}// getWidth
+
+	public int getHeight() {
+		return height;
+	}// getHeight
+
+	public int getNrOfGeneration() {
+		return nrOfGeneration;
+	}// getNrOfGeneration
+
+	public void randomPopulation(double fill) {
+		Random rn = new Random();
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++)
+				world[i][j] = fill <= rn.nextDouble();
+		}
+	}// randomPopulation
+
+	public void clearPopulation() {
+		this.world = new boolean[width][height];
+	}
+
+	public void newGeneration() {
+		boolean[][] tempWorld = new boolean[width][height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				int neighbors = nrOfNeighbors(i, j);
+				if (world[i][j]) {
+					if (neighbors < 2 || neighbors > 3)
+						tempWorld[i][j] = !getCell(i, j);
+					else
+						tempWorld[i][j] = getCell(i, j);
+				} else {
+					if (neighbors == 3)
+						tempWorld[i][j] = !getCell(i, j);
+					else
+						tempWorld[i][j] = getCell(i, j);
+				}
+			}
+		}
+		world = tempWorld;
+	}// newGeneration
+
+	private int nrOfNeighbors(int i, int j) {
+		int neighbors = 0;
+		for (int m = -1; m <= 1; m++) {
+			for (int n = -1; n <= 1; n++) {
+				if (m != 0 || n != 0)
+					neighbors = neighbors + cellToInt(i + m, j + n);
+			}
+		}
+		System.out.print(neighbors);
+		return neighbors;
+	}
+
+	private int cellToInt(int i, int j) {
+		return getCell(i, j) ? 1 : 0;
+	}
+
+	public void invertCell(int i, int j) {
+		world[i][j] = !world[i][j];
+	}// invertCell
+
+	public boolean getCell(int i, int j) {
+		if (i < 0 || j < 0 || i > width - 1 || j > height - 1)
+			return false;
+		return world[i][j];
+	}// getCell
+} // LifeModel

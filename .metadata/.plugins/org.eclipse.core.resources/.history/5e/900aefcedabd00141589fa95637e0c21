@@ -1,0 +1,42 @@
+package gameOfLife;
+
+import javax.swing.JFrame;
+
+public class Main {
+	public static void main(String[] args) {
+		JFrame f = new JFrame("Game of Life");
+		LifeModel model = new LifeModel(50, 50);
+		LifeWorld world = new LifeWorld(model, 400);
+
+		LifeView view = new LifeView(model, world);
+		if (args.length != 1) {
+			System.out.println("Felaktigt antal argument!");
+		} else {
+
+			try {
+
+				double ratio = Double.parseDouble(args[0]);
+
+				if (ratio < 0 || ratio > 1.0) {
+					System.out
+							.println("Argumentet måste vara ett tal i intervallet[0,1].");
+
+				} else {
+					model.randomPopulation(ratio);
+
+					f.add(view);
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					f.pack();
+					f.setResizable(false);
+					f.setVisible(true);
+				}
+			} catch (NumberFormatException nf) {
+
+				System.out
+						.println("Argumentet måste vara ett reellt tal i intervallet[0,1].");
+
+			}
+
+		}
+	} // main
+} // Main

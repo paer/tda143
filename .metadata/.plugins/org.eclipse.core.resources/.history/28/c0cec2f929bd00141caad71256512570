@@ -1,0 +1,31 @@
+package v1;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class DunkaGrodor extends JFrame {
+	public DunkaGrodor(int row, int col) {
+		InPutPanel inPanel = new InPutPanel(row, col);
+		OutPutPanel outPanel = new OutPutPanel();
+		PlayEngine theEngine = new PlayEngine(row, col, inPanel, outPanel);
+		ButtonPanel buttPanel = new ButtonPanel(theEngine);
+		inPanel.setEngine(theEngine);
+		JPanel center = new JPanel();
+		center.setLayout(new BorderLayout());
+		center.add("Center", inPanel);
+		center.add("South", outPanel);
+		setLayout(new BorderLayout());
+		add("Center", center);
+		add("South", buttPanel);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(300, 430);
+		setVisible(true);
+	}// konstruktor
+
+	public static void main(String[] args) {
+		DunkaGrodor win = new DunkaGrodor(5, 5);
+	}// main
+}// DunkaGrodor

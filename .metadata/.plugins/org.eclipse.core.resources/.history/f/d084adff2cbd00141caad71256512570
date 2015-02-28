@@ -1,0 +1,18 @@
+package v1;
+
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class ButtonPanel extends JPanel {
+
+	public ButtonPanel(PlayEngine theEngine) {
+		this.setLayout(new GridLayout(2, 1));
+		this.add(new JButton());
+		this.add(new JButton());
+		// TODO Auto-generated constructor stub
+	}
+
+}

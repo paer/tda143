@@ -1,0 +1,15 @@
+package timerTest;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class TimerTest extends JFrame {
+	setLayout(new GridLayout());
+	setSize(300,300);
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

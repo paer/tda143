@@ -1,0 +1,15 @@
+package v1;
+
+import java.awt.GridLayout;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class ButtonPanel extends JPanel {
+
+	public ButtonPanel(PlayEngine theEngine) {
+		this.setLayout(new GridLayout(2, 1));
+		// TODO Auto-generated constructor stub
+	}
+
+}

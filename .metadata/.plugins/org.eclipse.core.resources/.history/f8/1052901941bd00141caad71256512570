@@ -1,0 +1,49 @@
+package v1;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
+public class PlayEngine {
+	OutPutPanel outPanel;
+	int score;
+	Timer gameTimer;
+	Timer frogTimer;
+
+	public PlayEngine(int row, int col, InPutPanel inPanel, OutPutPanel outPanel) {
+		this.outPanel = outPanel;// TODO Auto-generated constructor stub
+		gameTimer = new Timer(60000, gameOverAction());
+		frogTimer = new Timer(1000, frogTimerAction());
+	}
+
+	private ActionListener frogTimerAction() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		};
+	}
+
+	private ActionListener gameOverAction() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				color = Color.green;
+				repaint();
+				timer.stop();
+			}
+		};
+	}
+
+	public void increaseScore() {
+		score++;
+		System.out.print(score);
+		outPanel.setLabel2(score);
+		// TODO Auto-generated method stub
+
+	}
+
+}
